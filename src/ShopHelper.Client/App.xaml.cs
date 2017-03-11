@@ -8,7 +8,8 @@ namespace ShopHelper.Client
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+            var main = new Main.MainComponent();
+            main.Run(this);
 		}
 
 		protected override void OnStart()

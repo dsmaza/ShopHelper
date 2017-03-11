@@ -208,4 +208,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
+  </PropertyGroup>
 </Project>

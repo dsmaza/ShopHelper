@@ -20,12 +20,15 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Main\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\ShoppingListComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\ShoppingListData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\ShoppingListItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\ShoppingListService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\ShoppingListView.xaml.cs">
       <DependentUpon>ShoppingListView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\ShoppingListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\FilesUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Guard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel.cs" />
   </ItemGroup>

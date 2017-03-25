@@ -9,6 +9,7 @@ namespace ShopHelper.Client.ShoppingList
         private ICommand refreshDataCommand;
         private ICommand addShoppingListItemCommand;
         private string newShoppingListItemValue;
+        private bool refreshing;
 
         public ShoppingListViewModel(ShoppingListView view) 
             : base(view)
@@ -39,6 +40,12 @@ namespace ShopHelper.Client.ShoppingList
         {
             get { return newShoppingListItemValue; }
             set { SetProperty(ref newShoppingListItemValue, value); }
+        }
+
+        public bool Refreshing
+        {
+            get { return refreshing; }
+            set { SetProperty(ref refreshing, value); }
         }
     }
 }

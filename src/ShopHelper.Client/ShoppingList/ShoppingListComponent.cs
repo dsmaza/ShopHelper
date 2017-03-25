@@ -7,10 +7,12 @@ namespace ShopHelper.Client.ShoppingList
     public class ShoppingListComponent
     {
         private readonly ShoppingListViewModel viewModel;
+        private readonly ShoppingListService service;
 
         public ShoppingListComponent()
         {
             viewModel = new ShoppingListViewModel(new ShoppingListView());
+            service = new ShoppingListService();
             OnInit();
         }
 
@@ -18,23 +20,35 @@ namespace ShopHelper.Client.ShoppingList
         {
             viewModel.ShoppingListItems = new ObservableCollection<ShoppingListItem>();
             viewModel.RefreshDataCommand = new Command(async () => await RefreshData());
-            viewModel.AddShoppingListItemCommand = new Command(AddShoppingListItem);
+            viewModel.AddShoppingListItemCommand = new Command(async () => await AddShoppingListItem());
         }
 
         private async Task RefreshData()
         {
-            await Task.Delay(100);
+            viewModel.Refreshing = true;
+
+            var items = await service.Get();
+            viewModel.ShoppingListItems.Clear();
+            foreach (var item in items)
+            {
+                viewModel.ShoppingListItems.Add(item);
+            }
+
+            viewModel.Refreshing = false;
         }
 
-        private void AddShoppingListItem()
+        private async Task AddShoppingListItem()
         {
             string newValue = viewModel.NewShoppingListItemValue;
             if (!string.IsNullOrWhiteSpace(newValue))
             {
-                viewModel.ShoppingListItems.Add(new ShoppingListItem
+                var newItem = new ShoppingListItem
                 {
                     Title = newValue
-                });
+                };
+
+                await service.Add(newItem);
+                viewModel.ShoppingListItems.Add(newItem);              
                 viewModel.NewShoppingListItemValue = null;
             }
         }
@@ -43,6 +57,7 @@ namespace ShopHelper.Client.ShoppingList
         {
             Guard.NotNull(navigation, nameof(navigation));
             await navigation.PushAsync(viewModel.View);
+            await RefreshData();
         }
     }
 }

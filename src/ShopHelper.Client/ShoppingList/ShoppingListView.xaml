@@ -4,7 +4,7 @@
              x:Class="ShopHelper.Client.ShoppingList.ShoppingListView"
              Title="{Binding Title}">
     <StackLayout>
-        <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding ShoppingListItems}" RefreshCommand="{Binding RefreshDataCommand}">
+        <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding ShoppingListItems}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshDataCommand}" IsRefreshing="{Binding Refreshing}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Title}"/>

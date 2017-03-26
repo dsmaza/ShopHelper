@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6c376263-f59f-4554-b764-158f7b39fcfd</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ShopHelper.Client</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IFileService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ServiceProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ServiceProviderExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Guard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel.cs" />
+  </ItemGroup>
+</Project>

@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace ShopHelper.Client.ShoppingList
 {
-    public class ShoppingListViewModel : ViewModel<ShoppingListView>
+    public class ShoppingListViewModel : ViewModel<IShoppingListView>
     {
         private ObservableCollection<ShoppingListItem> items;
         private ICommand refreshDataCommand;
@@ -11,7 +11,7 @@ namespace ShopHelper.Client.ShoppingList
         private string newShoppingListItemValue;
         private bool refreshing;
 
-        public ShoppingListViewModel(ShoppingListView view) 
+        public ShoppingListViewModel(IShoppingListView view) 
             : base(view)
         {
         }

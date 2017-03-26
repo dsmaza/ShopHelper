@@ -1,18 +1,19 @@
 ﻿using System.Threading.Tasks;
-using ShopHelper.Client.ShoppingList;
 using Xamarin.Forms;
 
 namespace ShopHelper.Client.Main
 {
-    public class MainComponent
+    public class MainComponent : IMainComponent
     {
         private readonly MainViewModel viewModel;
-        private bool running;
-        private NavigationPage rootNavigationPage;
+        private readonly IAppComponents appComponents;
 
-        public MainComponent()
+        public MainComponent(MainViewModel viewModel, IAppComponents appComponents)
         {
-            viewModel = new MainViewModel(new MainView());
+            Guard.NotNull(viewModel, nameof(viewModel));
+            Guard.NotNull(appComponents, nameof(appComponents));
+            this.viewModel = viewModel;
+            this.appComponents = appComponents;
             OnInit();
         }
 
@@ -21,19 +22,10 @@ namespace ShopHelper.Client.Main
             viewModel.ShowShoppingListCommand = new Command(async () => await ShowShoppingList());
         }
 
-        public void Run(Application app)
-        {
-            if (!running)
-            {
-                app.MainPage = rootNavigationPage = new NavigationPage(viewModel.View);
-                running = true;
-            }
-        }
-
         private async Task ShowShoppingList()
         {
-            var shoppingList = new ShoppingListComponent();
-            await shoppingList.Show(rootNavigationPage.Navigation);
+            var shoppingList = appComponents.GetShoppingList();
+            await shoppingList.Show(appComponents.Navigation);
         }
     }
 }

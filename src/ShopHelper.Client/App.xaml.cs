@@ -1,15 +1,22 @@
-﻿using Xamarin.Forms;
+﻿using ShopHelper.Client.Main;
+using ShopHelper.Client.Services;
+using Xamarin.Forms;
 
 namespace ShopHelper.Client
 {
     public partial class App : Application
 	{
+        private readonly MainComponent mainComponent;
+
 		public App()
 		{
 			InitializeComponent();
 
-            var main = new Main.MainComponent();
-            main.Run(this);
+            var mainView = new MainView();
+            MainPage = new NavigationPage(mainView);
+            var mainViewModel = new MainViewModel(mainView);
+            var appComponents = new AppComponents(MainPage.Navigation, ServiceProvider.Create());
+            mainComponent = new MainComponent(mainViewModel, appComponents);
 		}
 
 		protected override void OnStart()

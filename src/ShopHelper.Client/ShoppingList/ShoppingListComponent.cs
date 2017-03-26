@@ -4,15 +4,17 @@ using Xamarin.Forms;
 
 namespace ShopHelper.Client.ShoppingList
 {
-    public class ShoppingListComponent
+    public class ShoppingListComponent : IShoppingListComponent
     {
         private readonly ShoppingListViewModel viewModel;
-        private readonly ShoppingListService service;
+        private readonly IShoppingListService service;
 
-        public ShoppingListComponent()
+        public ShoppingListComponent(ShoppingListViewModel viewModel, IShoppingListService service)
         {
-            viewModel = new ShoppingListViewModel(new ShoppingListView());
-            service = new ShoppingListService();
+            Guard.NotNull(viewModel, nameof(viewModel));
+            Guard.NotNull(service, nameof(service));
+            this.viewModel = viewModel;
+            this.service = service;
             OnInit();
         }
 
@@ -56,7 +58,7 @@ namespace ShopHelper.Client.ShoppingList
         public async Task Show(INavigation navigation)
         {
             Guard.NotNull(navigation, nameof(navigation));
-            await navigation.PushAsync(viewModel.View);
+            await navigation.PushAsync((ShoppingListView)viewModel.View);
             await RefreshData();
         }
     }

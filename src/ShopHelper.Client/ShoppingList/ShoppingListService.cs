@@ -4,18 +4,19 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using ShopHelper.Client.Utils;
+using ShopHelper.Client.Services;
 
 namespace ShopHelper.Client.ShoppingList
 {
-    public class ShoppingListService
+    public class ShoppingListService : IShoppingListService
     {
         private readonly string dataFilePath;
         private ShoppingListData data;
 
-        public ShoppingListService()
+        public ShoppingListService(IFileService fileService)
         {
-            dataFilePath = Path.Combine(FilesUtil.DataDirectory, $"{nameof(ShoppingListData)}.json");
+            Guard.NotNull(fileService, nameof(fileService));
+            dataFilePath = Path.Combine(fileService.DataDirectory, $"{nameof(ShoppingListData)}.json");
             InitLocalData();
         }
 

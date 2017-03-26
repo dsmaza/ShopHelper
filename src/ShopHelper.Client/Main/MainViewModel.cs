@@ -2,11 +2,11 @@
 
 namespace ShopHelper.Client.Main
 {
-    public class MainViewModel : ViewModel<MainView>
+    public class MainViewModel : ViewModel<IMainView>
     {
         private ICommand showShoppingListCommand;
 
-        public MainViewModel(MainView view) : base(view)
+        public MainViewModel(IMainView view) : base(view)
         {
         }
 

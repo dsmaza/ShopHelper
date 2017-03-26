@@ -12,13 +12,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)IView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Main\IMainComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Main\IMainView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Main\MainComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Main\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Main\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\IShoppingListComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\IShoppingListService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\IShoppingListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\ShoppingListComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\ShoppingListData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\ShoppingListItem.cs" />
@@ -28,9 +32,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ShoppingList\ShoppingListViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utils\FilesUtil.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utils\Guard.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppComponents.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">

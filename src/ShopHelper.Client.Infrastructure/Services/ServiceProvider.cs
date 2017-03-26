@@ -1,32 +1,31 @@
 ﻿using System;
 using ShopHelper.Client.ShoppingList;
+using SimpleInjector;
 
 namespace ShopHelper.Client.Services
 {
     public class ServiceProvider : IServiceProvider
     {
-        private ServiceProvider()
-        {
+        private readonly Container container;
 
+        private ServiceProvider(Container container)
+        {
+            Guard.NotNull(container, nameof(container));
+            this.container = container;
         }
 
         public static IServiceProvider Create()
         {
-            return new ServiceProvider();
+            var container = new Container();
+            container.Register<IFileService, FileService>();
+            container.Register<IShoppingListService, ShoppingListService>();
+
+            return new ServiceProvider(container);
         }
 
         public object GetService(Type serviceType)
         {
-            // TODO DI
-            if (serviceType == typeof(IFileService))
-            {
-                return new FileService();
-            }
-            else if (serviceType == typeof(IShoppingListService))
-            {
-                return new ShoppingListService(new FileService());
-            }
-            return null;
+            return container.GetInstance(serviceType);
         }
     }
 }

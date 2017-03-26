@@ -1,4 +1,5 @@
 ﻿using System;
+using ShopHelper.Client.Logging;
 using ShopHelper.Client.ShoppingList;
 using SimpleInjector;
 
@@ -17,8 +18,10 @@ namespace ShopHelper.Client.Services
         public static IServiceProvider Create()
         {
             var container = new Container();
-            container.Register<IFileService, FileService>();
-            container.Register<IShoppingListService, ShoppingListService>();
+            container.RegisterSingleton<IFileService, FileService>();
+            container.RegisterSingleton<FileLogBuilder>();
+            container.Register<IShoppingListService, ShoppingListService>();       
+            container.Register(typeof(ILogger<>), typeof(FileLogger<>));  
 
             return new ServiceProvider(container);
         }

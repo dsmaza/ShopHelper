@@ -10,6 +10,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)IView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging\FileLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging\FileLogBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging\ILogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging\LoggerExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging\LogItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging\LogLevel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IFileService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ServiceProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ServiceProviderExtensions.cs" />

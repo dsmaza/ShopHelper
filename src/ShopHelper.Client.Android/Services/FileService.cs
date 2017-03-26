@@ -2,14 +2,18 @@ namespace ShopHelper.Client.Services
 {
     public class FileService : IFileService
     {
-        private static readonly string dataDirectory;
+        private readonly string dataDirectory;
+        private readonly string logsDirectory;
 
-        static FileService()
+        public FileService()
         {
             var localStorage = Android.OS.Environment.ExternalStorageDirectory.ToString();
             dataDirectory = System.IO.Path.Combine(localStorage, "ShopHelper", "Data");
+            logsDirectory = System.IO.Path.Combine(localStorage, "ShopHelper", "Logs");
         }
 
         public string DataDirectory => dataDirectory;
+
+        public string LogsDirectory => logsDirectory;
     }
 }

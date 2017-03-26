@@ -2,14 +2,18 @@
 {
     public class FileService : IFileService
     {
-        private static readonly string dataDirectory;
+        private readonly string dataDirectory;
+        private readonly string logsDirectory;
 
-        static FileService()
+        public FileService()
         {
             var localStorage = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-            dataDirectory = System.IO.Path.Combine(localStorage, "ShopHelper");
+            dataDirectory = System.IO.Path.Combine(localStorage, "ShopHelper", "Data");
+            logsDirectory = System.IO.Path.Combine(localStorage, "ShopHelper", "Logs");
         }
 
         public string DataDirectory => dataDirectory;
+
+        public string LogsDirectory => logsDirectory;
     }
 }

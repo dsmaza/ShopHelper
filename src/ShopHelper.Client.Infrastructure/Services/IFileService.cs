@@ -3,5 +3,7 @@
     public interface IFileService
     {
         string DataDirectory { get; }
+
+        string LogsDirectory { get; }
     }
 }
